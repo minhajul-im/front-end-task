@@ -40,7 +40,7 @@ export const NavAction = () => {
 
       <div className="block lg:hidden ml-2">
         <Mobile>
-          <AlignJustify size={24} />
+          <AlignJustify size={24} className="cursor-pointer" />
         </Mobile>
       </div>
     </nav>
