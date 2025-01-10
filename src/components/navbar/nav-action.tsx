@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "../ui/button";
-import { Heart, ShoppingCart } from "lucide-react";
 import { Authentication } from "@/modules/auth";
 import { useDispatch } from "react-redux";
 import { openModal } from "@/store/modal-slice";
+import { Mobile } from "./mobile";
+import { AlignJustify, Heart, ShoppingCart } from "lucide-react";
 
 export const NavAction = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const NavAction = () => {
           <p className="text-base font-normal">Favorite</p>
         </div>
       </div>
+
       <div className="flex items-center gap-4">
         <div className="relative">
           <ShoppingCart />
@@ -25,14 +27,22 @@ export const NavAction = () => {
         <p className="text-base font-normal hidden lg:block">Cart</p>
       </div>
 
-      <Authentication>
-        <Button
-          onClick={() => dispatch(openModal("LOGIN"))}
-          variant="outline"
-          className="bg-transparent backdrop-blur-md text-white font-semibold rounded">
-          Sign In
-        </Button>
-      </Authentication>
+      <div className="hidden lg:block">
+        <Authentication>
+          <Button
+            onClick={() => dispatch(openModal("LOGIN"))}
+            variant="outline"
+            className="bg-transparent backdrop-blur-md text-white font-semibold rounded">
+            Sign In
+          </Button>
+        </Authentication>
+      </div>
+
+      <div className="block lg:hidden ml-2">
+        <Mobile>
+          <AlignJustify size={24} />
+        </Mobile>
+      </div>
     </nav>
   );
 };
