@@ -1,14 +1,12 @@
-"use client";
-
-import { BaseModal } from "@/components/common/base-modal";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { RootState } from "@/store";
-import { closeModal, openModal } from "@/store/modal-slice";
-import { Button } from "@/components/ui/button";
+import { closeModal } from "@/store/modal-slice";
+import { useDispatch, useSelector } from "react-redux";
 import { Login } from "./login";
 import { Register } from "./register";
+import { BaseModal } from "@/components/common/base-modal";
 
-export const Authentication = () => {
+export const Authentication = ({ children }: { children: React.ReactNode }) => {
   const { isOpen } = useSelector((state: RootState) => state.modal);
   const dispatch = useDispatch();
 
@@ -24,21 +22,16 @@ export const Authentication = () => {
   };
 
   return (
-    <main>
-      <div className="flex gap-4">
-        <Button onClick={() => dispatch(openModal("LOGIN"))}>login</Button>
-        <Button onClick={() => dispatch(openModal("REGISTER"))}>
-          register
-        </Button>
-      </div>
+    <>
+      {children}
 
       {isOpen && (
         <BaseModal onClose={() => dispatch(closeModal())}>
-          <section className="w-[343px] md:w-[478px]">
+          <section className="w-[300px] md:w-[478px] mx-4 md:mx-0">
             {renderModalContent()}
           </section>
         </BaseModal>
       )}
-    </main>
+    </>
   );
 };
